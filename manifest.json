@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "Text Summarizer",
+  "version": "1.0",
+  "description": "A Chrome extension that summarizes selected text on webpages.",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "browser_action": {
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": ["popup.html"]
+}
