@@ -14,6 +14,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (selectedText.length > 0) {
       // Call OpenAI API to summarize the selected text
       // Replace YOUR_OPENAI_API_KEY with your actual OpenAI API key
+      
+      // TODO: use environment variable and hide this API key
+      // or, create an API endpoint, put the API key there, and send requests
+      // to this API endpoint
       fetch("https://api.openai.com/v1/engines/davinci-codex/completions", {
         method: "POST",
         headers: {
