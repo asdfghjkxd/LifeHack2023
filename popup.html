@@ -7,9 +7,17 @@
   </head>
   <body>
     <div class="container">
-      <textarea id="selectedText" readonly></textarea>
-      <button id="summarizeBtn">Summarize</button>
-      <div id="summary"></div>
+      <div id="title">
+        <b id="titleText">What would you like to summarize?</b>
+      </div>
+      <div class="bottomSection">
+        <button id="summarizeBtn"><b>Summarize selected portion</b></button>
+        <textarea id="generatedText"></textarea>
+        <button id="downloadBtn">
+          <img id="downloadIcon" src="download.png" alt="download-icon" />
+          <b id="downloadText">Download</b>
+        </button>
+      </div>
     </div>
   </body>
 </html>
