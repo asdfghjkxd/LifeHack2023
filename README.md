@@ -29,4 +29,4 @@ This will make a call to the OpenAI API to summarise the text of interest.
 
 After a while, the result of the summary will be displayed within the extension popup.
 
-You may then copy the text directly out of the text box, or download the text by clicking on the "Download" button.
+You may then copy the text directly out of the text box, or download the text by clicking on the "Save" button.
