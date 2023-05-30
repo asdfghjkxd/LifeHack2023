@@ -1,40 +1,22 @@
 const API_KEY = "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";
+const API_URL = "https://api.openai.com/v1/engines/davinci-codex/completions";
 
-function summarizeText(text) {
-  return fetch("https://api.openai.com/v1/engines/davinci-codex/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${API_KEY}`,
-    },
-    body: JSON.stringify({
-      prompt: text,
-      max_tokens: 50,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      const summary = data.choices[0].text.trim();
-      return summary;
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      throw new Error("An error occurred while summarizing the text.");
-    });
+async function summarizeText(text) {
+//   const response = await fetch(API_URL, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${API_KEY}`,
+//     },
+//     body: JSON.stringify({
+//       prompt: text,
+//       max_tokens: 50,
+//     }),
+//   });
+//   const data = await response.json();
+  const data = { choices: [{ text: "lorem ipsum" }] };
+  return data.choices[0].text.trim();
 }
-
-function injectContentScript(tabId) {
-  chrome.scripting.executeScript({
-    target: { tabId: tabId },
-    files: ["content.mjs"],
-  });
-}
-
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.action.onClicked.addListener((tab) => {
-    injectContentScript(tab.id);
-  });
-});
 
 chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   if (request.action === "summarize") {

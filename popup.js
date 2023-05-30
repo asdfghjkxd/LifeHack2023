@@ -2,24 +2,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const summarizeBtn = document.getElementById("summarizeBtn");
   const selectedText = document.getElementById("selectedText");
   const summary = document.getElementById("generatedText");
+  const downloadBtn = document.getElementById("downloadBtn");
 
   summarizeBtn.addEventListener("click", () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       chrome.tabs.sendMessage(
         tabs[0].id,
         { action: "summarize" },
-        (response) => {
-          summary.textContent = response.summary;
+        response => {
+          if (response.summary) {
+            summary.textContent = response.summary;
+          }
         }
       );
     });
   });
 
-  chrome.tabs.executeScript({ file: "content.js" });
+  downloadBtn.addEventListener("click", () => {
+    navigator.clipboard
+      .writeText(summary.textContent)
+      .then(() => console.log("Text copied to clipboard"));
+  });
 
-  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action === "updateSelectedText") {
-      selectedText.value = request.selectedText;
+  document.addEventListener("mouseup", () => {
+    const text = window.getSelection().toString().trim();
+    if (text.length > 0) {
+      selectedText.value = text;
     }
   });
 });
