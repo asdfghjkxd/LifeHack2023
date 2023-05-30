@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   const summarizeBtn = document.getElementById("summarizeBtn");
   const selectedText = document.getElementById("selectedText");
-  const summary = document.getElementById("summary");
+  const summary = document.getElementById("generatedText");
 
-  summarizeBtn.addEventListener("click", function () {
+  summarizeBtn.addEventListener("click", () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       chrome.tabs.sendMessage(
         tabs[0].id,
