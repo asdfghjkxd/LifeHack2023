@@ -30,12 +30,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           max_tokens: Math.round(selectedText.length * 12 / 10),
         }),
       })
-        .then((response) => response.json())
-        .then((data) => {
-          const summary = data.choices[0].text.trim();
-          sendResponse({ summary });
-        })
-        .catch((error) => console.error(error));
+      .then((response) => response.json())
+      .then((data) => {
+        const summary = data.choices[0].text.trim();
+        sendResponse({ summary });
+      })
+      .catch((error) => console.error(error));
     } else {
       sendResponse({ summary: "No text selected." });
     }
