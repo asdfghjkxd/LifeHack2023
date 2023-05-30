@@ -1,7 +1,7 @@
 const API_KEY = "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";
 
 function summarizeText(text) {
-  return fetch("https://api.openai.com/v1/completions", {
+  return fetch("https://api.openai.com/v1/engines/davinci-codex/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
